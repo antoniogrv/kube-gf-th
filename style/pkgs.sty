@@ -1,0 +1,161 @@
+% 
+%            ,,                                        
+%          `7MM            _.o9                                
+%            MM                                             
+%  ,6"Yb.    MM  ,p6"bo   ,6"Yb.  M"""MMV  ,6"Yb.  `7Mb,od8 
+% 8)   MM    MM 6M'  OO  8)   MM  '  AMV  8)   MM    MM' "' 
+%  ,pm9MM    MM 8M        ,pm9MM    AMV    ,pm9MM    MM     
+% 8M   MM    MM YM.    , 8M   MM   AMV  , 8M   MM    MM     
+% `Moo9^Yo..JMML.YMbmd'  `Moo9^Yo.AMMmmmM `Moo9^Yo..JMML.   
+% 
+% 
+% Free and Open-Source template for academic works
+% https://github.com/dpmj/alcazar
+
+
+% DEBUG
+
+% \usepackage{showframe}
+
+
+% BASE
+
+\usepackage[spanish, english]{babel}  % Language
+\usepackage[utf8]{inputenc}  % File encoding 
+
+
+% TEXT AND FONTS
+
+% Serif font
+\usepackage{libertinus}  % Traditional but with personality, easy to read, compact
+% Some alternatives:
+% \usepackage{nimbusserif}  % Similar to Times
+% \usepackage[default,regular,semibold]{sourceserifpro}  % A bit big and less compact, but easy on the eyes
+
+% Monospace font
+\usepackage{plex-mono}  
+
+% Sans-serif font
+\usepackage[defaultsans,scale=0.9]{opensans}
+
+% Encoding
+\usepackage[T1]{fontenc}
+
+% Symbols
+\usepackage{eurosym}  % Euro symbol
+
+% Misc
+\usepackage{moresize}  % More text sizes
+\usepackage[singlespacing]{setspace}  % Control line spacing
+
+
+% MATH
+
+\usepackage{amsmath}  % Math
+\usepackage{siunitx}  % International System units
+
+
+% GRAPHICS AND ICONS
+
+\usepackage{graphicx}  % Required for inserting images
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif}
+
+\usepackage{fontawesome5}  % FontAwesome icons
+
+\usepackage{dirtree}  % Do directory trees
+\usepackage{pdfpages}  % Insert PDF pages
+
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds}
+\tikzset{x=1cm, y=1cm} % Default tikz units
+
+
+% PAGE GEOMETRY AND STYLE
+
+\usepackage{geometry}  % Modify page geometry
+\usepackage{fancyhdr}  % Fancy page style
+\usepackage{changepage}  % Margin adjustment and detection of odd/even pages
+\usepackage{pdflscape}  % Landscape pages
+
+
+% TITLE FORMATTING
+
+\usepackage{titlesec}  % Modify title style and spacing
+
+
+% URL, REF AND HYPERREF
+
+\usepackage{hyperref}
+\usepackage{xurl}  % eXtended url package
+\usepackage{nameref}  % get section names by label
+
+
+% APPENDIX
+
+\usepackage{appendix}
+
+
+% TABLES
+
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{array}
+\usepackage{colortbl}
+\usepackage{longtable}
+
+
+% FIGURES
+
+\usepackage{float}
+\usepackage[labelsep=endash, font=small, format=plain, labelfont={bf,up}]{caption}
+\usepackage{subcaption}  % Subfigures
+
+
+% LISTINGS
+
+% \usepackage{listings}
+% \usepackage{mdframed}
+% \usepackage{moreverb}
+\usepackage[newfloat]{minted}
+
+
+% LISTS
+
+\usepackage{enumitem}
+
+
+% BIBLIOGRAPHY
+
+% Necessary to make the bibliography two-column
+%\usepackage{etoolbox}
+%\usepackage{relsize}
+
+\usepackage{csquotes}
+\usepackage[backend=biber, style=ieee]{biblatex}
+\addbibresource{bibliography/references.bib}
+
+
+
+% GLOSSARIES AND ACRONYMS
+
+% One-column glossary
+% \usepackage[nonumberlist, acronym, toc, style=listhypergroup]{glossaries}  
+
+% Two-column glossary
+\usepackage[toc, style=mcoltreehypergroup, stylemods=mcols]{glossaries-extra}  
+
+\usepackage{glossary/glossary}  % Glossary file
+\makeglossaries
+
+% Multitoc - for two-column table of contents, list of figures and tables.
+% Outdated and discontinued
+% \usepackage[toc, lof, lot]{multitoc}  
+
+
+% \usepackage[]{tocloft}
+
+
+
+% \setlength{\cftsubsecindent}{0cm}
+% \setlength{\cftsubsubsecindent}{0cm}
+
