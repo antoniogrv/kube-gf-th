@@ -19,25 +19,34 @@
 \phantomsection
 
 \pagestyle{plain}
+\pagenumbering{gobble}
 
 \phantomsection
 \addcontentsline{toc}{chapter}{Abstract}
 
-{\noindent \large \textbf{\thesisTitle}}\\
+\begin{figure}
+    \centering
+    \includegraphics[width=50px]{figures/logos/k8s-bw-2.png}
+    \label{fig:abstract:kubernetes}
+\end{figure}
 
-{\noindent \textbf{\textsc{Keywords:}}}
+\begin{center}
+    \large \textbf{\thesisTitle}
+\end{center}
+
+{\noindent \textbf{\textsc{Keywords}}}
 
 {\noindent \thesisKeywords}\\
 
 
-{\noindent \textbf{\textsc{Abstract:}}}
+{\noindent \textbf{\textsc{Abstract}}}
 
-\noindent Abstract in the same language as the main text. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus quis elit id sagittis. Cras tincidunt nisi at tellus luctus, et congue dolor posuere. Aliquam suscipit felis sit amet lacus ultrices aliquet. Sed sagittis ultrices nisi, vel elementum elit dignissim non. Fusce faucibus ex at massa ultrices elementum. Nullam ullamcorper lorem sit amet facilisis cursus. Suspendisse non erat non justo porta placerat. Morbi porttitor dictum molestie. Sed vitae iaculis libero. Suspendisse in gravida lacus, tempor ultrices nibh. Nam consequat scelerisque porttitor.
+\noindent Il \glsname{ml} è una delle branche dell'informatica con le più complesse esigenze computazionali. La difficoltà intrinseca del realizzare modelli di machine learning si amplifica ulteriormente quando sorge la necessità - pressante e inevitabile - di traslare le fasi di sviluppo e di deployment ad un contesto distribuito. Grazie alla sua natura altamente parallelizzabile, i carichi di machine learning sono candidati ideale per i sistemi di orchestrazione di container, che fanno leva sulla scalabilità verticale per assicurare virtualmente un'infinita capacità computazionale. 
 
-Nulla elementum orci in dolor dapibus, ac facilisis sem ultrices. Nullam eleifend id eros sed luctus. Maecenas arcu ipsum, scelerisque id lorem in, placerat posuere tellus. Etiam gravida velit sed arcu viverra dapibus. Mauris vitae augue dapibus, molestie justo eget, condimentum ipsum. Nulla tristique mi eget semper luctus. Etiam commodo vestibulum vulputate. Etiam quis sapien dolor. Nunc tristique eu lacus quis ullamcorper. Sed volutpat rutrum vehicula. Donec nunc nisl, suscipit in faucibus vitae, tristique eu risus. Nulla facilisis augue eget interdum rutrum. Aliquam sem nunc, fermentum sed urna ac, faucibus interdum nisi.
+Nell'ottica di questo lavoro di tesi, due modelli di machine learning dediti all'analisi genomica e realizzati con un paradigma monolitico sono stati sottoposti ad un processo di frammentazione in microservizi containerizzati. Avendo rilevato un sostanziale miglioramento delle performance del modello grazie alla sua nuova architettura, ci si è curati di trasportare la medesima su un cluster Kubernetes in grado di poterne gestire agilmente e con resilienza il ciclo di vita, dall'allenamento alla predizione, orchestrando queste fasi medianti Kubeflow. I risultati ottenuti trovano largo impiego sia su ecosistemi \textit{cloud-native} che \textit{bare metal}.
 
-Proin a condimentum nibh. Praesent vulputate tellus vel metus rutrum, non luctus mi sollicitudin. Nam ac tellus ut eros sollicitudin luctus at ac mi. Vestibulum mollis nec nisi a laoreet. Proin neque tortor, placerat nec suscipit sit amet, ullamcorper in sem. Fusce faucibus ultrices cursus. Maecenas scelerisque mauris diam, at volutpat nisi porta vitae. Sed at ipsum et leo cursus varius eu eu lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut felis ipsum, imperdiet rhoncus orci ac, consectetur luctus nisl. Cras aliquet elementum tellus ullamcorper malesuada. Integer purus est, pharetra eu ullamcorper quis, imperdiet non turpis.
+Al fine ultimo di tarare l'effettiva possibilità di trasferire in produzione quanto prodotto, è stata condotta un'analisi ad ampio spettro delle possibili vulnerabilità dell'architettura, immaginando molteplici scenari di attacco da parte di un avversario sulla rete. Quest'analisi ha permesso di valutare l'effettiva resilienza del sistema, e di proporre una serie di contromisure atte a mitigare i rischi individuati. Contestualmente, una serie di contributi sperimentali legati alla produzione di immagini Docker e alla loro distribuzione su un cluster Kubernetes sono stati proposti e discussi.
 
-In vestibulum faucibus ligula eget blandit. Donec eget cursus risus, quis suscipit justo. Curabitur efficitur, dolor nec pulvinar pellentesque, lectus eros hendrerit nisi, in aliquet erat nunc non ipsum. Curabitur felis nunc, viverra nec quam ultrices, suscipit condimentum nibh. Nam faucibus felis hendrerit imperdiet maximus. Curabitur tincidunt porttitor lectus quis feugiat. Sed imperdiet bibendum mi.
+Lo studio condotto sottolinea il ruolo critico di Kubernetes nei sistemi ad alta complessità come quello presentato, ed evidenzia come il paradigma MLOps sia la modalità più organica e competitiva per sfruttare pienamente il potenziale del machine learning mediante l'adozione di architetture scalabili e resilienti con Kubernetes.
 
-Nullam quis lacus vel ante feugiat efficitur id ut quam. Pellentesque commodo elit nec urna gravida maximus. Suspendisse ut risus eu ipsum porta porta ac et orci. Donec dictum ligula sodales, euismod est sed, semper libero. In blandit, nulla et elementum pharetra, mi nunc sagittis tellus, sit amet scelerisque magna elit ac sapien. Curabitur ipsum dui, pretium a maximus id, varius gravida nisl. Sed vitae mattis elit, vitae hendrerit lorem. 
+Uno spettro di possibili sviluppi futuri è stato osservato contestualmente all'attività progettuale: ad esempio, tecnologie come \glsname{mxnet}, \glsname{ray} o \glsname{mlflow} potrebbero costituire alternative valide a Kubeflow; inoltre, l'integrazione di strumenti di data governance come \glsname{fybrik} consentirebbe l'impiego di dataset contenenti PII, ampliando ulteriormente il campo di applicazione del sistema.

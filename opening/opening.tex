@@ -61,27 +61,29 @@
 
     % Greatly compress space used by TOC, LOF and LOT
     \renewcommand{\baselinestretch}{1}  % less spacing
+    \renewcommand{\contentsname}{Indice dei contenuti}
     \small  % smaller font size
     \setlength{\parskip}{0mm}  % Paragraph skip 0mm
 
+    \pagenumbering{arabic}
 
     % List of Contents
     {
         \tableofcontents
         
-        \addcontentsline{toc}{chapter}{Table of contents}
+        \addcontentsline{toc}{chapter}{Indice dei contenuti}
     }
     
     % List of Figures
     {
         \listoffigures
-        \addcontentsline{toc}{chapter}{List of figures}
+        \addcontentsline{toc}{chapter}{Indice delle figure}
     }
     
     % List of Tables
     {
         \listoftables
-        \addcontentsline{toc}{chapter}{List of tables}
+        \addcontentsline{toc}{chapter}{Indice delle tabelle}
     }
     
     % List of Listings -- uncomment if necessary
