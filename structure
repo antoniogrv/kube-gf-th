@@ -1,0 +1,53 @@
+Abstract
+Indice dei contenuti
+Indice delle figure
+I. Introduzione
+    I.I La Rivoluzione DevOps e le sue conseguenze
+    I.II Paradigma MLOps e MLSecOps
+II. Bioinformatica & MLOps
+    II.II I modelli GeneFusion
+        II.II.I Modello Gene Classifier
+        II.II.II Modello Fusion Classifier
+III. Tecnologie per l'approccio distribuito ai problemi di Machine Learning
+    III.I Architetture a microservizi e monolitiche
+    III.II Containerizzazione e virtualizzazione
+        III.II.I Docker
+    III.II Orchestrare carichi di lavoro
+        III.II.I Kubernetes
+            III.II.I.I Architettura di Kubernetes
+            III.II.I.II Operare su un cluster Kind
+        III.II.II Kubeflow
+            III.II.II.I Architettura di Kubeflow
+            III.II.II.II Sviluppo dei componenti
+            III.II.II.III Progettazione di una pipeline di Machine Learning
+            III.II.II.IV Alternative a Kubeflow
+                III.II.II.IV.I Ray
+                III.II.II.IV.II. MLFlow
+                III.II.II.IV.III Apache MXNet
+        III.II.III Accenni di Cloud Computing
+            III.II.III.I AWS Elastic Kubernetes Service
+            III.II.III.II GCP Google Kubernetes Engine
+IV. Riprogettazione in microservizi dei modelli GeneFusion
+    IV.I Fasi di riprogettazione dei modelli GeneFusion in microservizi
+    IV.II Integrazione del runtime CUDA per l'integrazione della GPU
+    IV.III Compilazione dei manifesti della pipeline con Miniconda e Docker
+    IV.IV Caricamento delle immagini Docker su un registro on-prem
+    IV.V Esecuzione della pipeline
+    IV.VI Benchmark delle prestazioni
+V. Considerazioni di MLSecOps
+    V.I Kali Linux
+        V.II Containerizzazione di Kali Linux
+    V.II Metasploit Framework
+        V.II.I Kubernetes Resource Enumeration
+        V.II.II Kubernetes Remote Pod Execution
+    V.III Zero-dependency Container Penetration Testing Toolkit (CDK)
+        V.III.I Containerizzazione di CDK e iniezione arbitraria su un registro Docker
+        V.III.II Creare un nodo Kind contagiato da CDK
+    V.IV Artillery
+        V.IV.I Kubernetes Control Plane Load Testing
+VI. Sviluppi futuri
+    VI.I Distribuzione di GeneFusion come applicazione Helm
+    VI.II Kubeflow Data Governance con Fybrik
+    VI.III MLRE & Chaos Engineering
+Glossario
+Bibliografia
