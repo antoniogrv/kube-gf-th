@@ -17,7 +17,6 @@
 \cleardoublepage
 
 \pagestyle{biblio}
-\pagenumbering{gobble}
 
 
 
@@ -27,18 +26,18 @@
 {
     \renewcommand{\UrlFont}{\ttfamily\scriptsize}  
     % Smaller URLs (USE FOR IBM PLEX MONO ONLY)
-    
+
     \small  % Compress space used by bibliography
 
     % For bibtex bibliography
     % \bibliographystyle{ieeetr}
-    % \bibliography{bibliography/references}
+    % \bibliography{bibliography/eferences
 
     % Multi-column bibliography 
     % For biblatex bibliography
     \begin{multicols}{2}[\printbibheading]
         \AtNextBibliography{\small \pagestyle{biblio}}
-        \printbibliography[heading=none]  
+        \printbibliography[heading=none]
     \end{multicols}
 
 }
