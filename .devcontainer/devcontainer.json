@@ -29,6 +29,7 @@
                 "files.associations": {
                     "*.tex": "latex"
                 },
+                "editor.wordWrap": "on",
                 "latex-workshop.latex.recipes": [
                     {
                         "name": "latexmk",

@@ -1,0 +1,56 @@
+% 
+%            ,,                                        
+%          `7MM            _.o9                                
+%            MM                                             
+%  ,6"Yb.    MM  ,p6"bo   ,6"Yb.  M"""MMV  ,6"Yb.  `7Mb,od8 
+% 8)   MM    MM 6M'  OO  8)   MM  '  AMV  8)   MM    MM' "' 
+%  ,pm9MM    MM 8M        ,pm9MM    AMV    ,pm9MM    MM     
+% 8M   MM    MM YM.    , 8M   MM   AMV  , 8M   MM    MM     
+% `Moo9^Yo..JMML.YMbmd'  `Moo9^Yo.AMMmmmM `Moo9^Yo..JMML.   
+% 
+% 
+% Free and Open-Source template for academic works
+% https://github.com/dpmj/alca
+
+
+
+\clearpage
+\cleardoublepage
+
+\chapter{Problemi bioinformatici ad alta complessità}
+
+La \glsname{bioinf}, disciplina interdisciplinare congiungente biologia e informatica, ha conosciuto un rapido sviluppo negli ultimi decenni grazie alla crescente disponibilità di dati biologici ad alta dimensionalità. La disciplina si propone di analizzare, interpretare e gestire le informazioni biologiche mediante l'impiego di strumenti computazionali avanzati. Tale ambito ha preso piede in virtù della sua capacità di contribuire significativamente alla comprensione dei fenomeni biologici complessi. La bioinformatica abbraccia molteplici sfaccettature, tra cui l'analisi del genoma, la proteomica, la trascrittomica e la metabolomica, fornendo un quadro completo delle intricazioni biologiche che costituiscono il fondamento della vita.
+
+Parallelamente, l'introduzione del \glsname{ml} nella bioinformatica ha rappresentato una svolta epocale, consentendo l'analisi efficiente di grandi dataset biologici \cite{lecun2015deep, angermueller2016deep}. Modelli di machine learning, quali reti neurali, support vector machines e algoritmi di apprendimento profondo, sono stati impiegati per identificare pattern nascosti nei dati biologici, predire interazioni molecolari, classificare malattie genetiche e persino progettare nuove molecole farmaceutiche. Studi come quelli condotti da Ching et al. \cite{ching2018deep} e Min et al. \cite{min2017deep} attestano la crescente efficacia dell'approccio ML nell'affrontare questioni complesse in ambito bioinformatico.
+
+Tuttavia, l'applicazione di modelli di machine learning alla bioinformatica non è priva di sfide intrinseche. La complessità e la variabilità dei dati biologici, la presenza di rumore sperimentale e la necessità di interpretare risultati in un contesto biologico rendono ardua l'adozione di modelli standard. Inoltre, la carenza di dataset sufficientemente ampi e ben etichettati rappresenta un ostacolo alla creazione di modelli generalizzabili. Pubblicazioni quali quelle di Ching et al. \cite{ching2018deep} e Min et al. \cite{min2017deep} evidenziano le difficoltà incontrate nel bilanciare precisione e generalizzazione nella pratica bioinformatica attraverso l'utilizzo di modelli di machine learning. La continua ricerca e lo sviluppo di nuovi approcci e metodologie sono dunque imperativi per superare tali sfide e massimizzare il potenziale della bioinformatica nell'era dell'informazione molecolare.
+
+Un uilteriore esempio notevole dell'applicazione del machine learning in bioinformatica è l'uso di \glsname{nn} per predire la struttura tridimensionale delle proteine. La ricerca di Senior et al. (2020) ha dimostrato progressi significativi in questo ambito \cite{senior2020improved}.
+
+\section{I modelli GeneFusion}
+
+Questa tesi itera su un lavoro accademico predentemente realizzato dagli studenti Antonio Cirillo ed Eugenio De Simone dell'Università degli Studi di Salerno \cite{cirillo} \cite{desimone}, supervisionati dal relatore Rocco Zaccagnino.
+
+Gli studenti hanno avanzato uno spettro di analisi e sperimentazioni legate alla classificazione dei geni e all'individuazione delle cosiddette reads chimeriche, motivate dall'alta presenza di falsi positivi negli strumenti di classificazione dei geni di fusione. In generale, gli studenti hanno suggerito una scarsa qualità delle classificazioni dei tool pre-esistenti, suggerendo dunque la necessità di produrne dei nuovi. Nel tentativo di affrontare queste limitazioni, gli studenti hanno proposto nuovi strumenti basate su tecniche di \glsname{dl} in grado di contribuire all'individuamento di reads chimeriche in pazienti affetti da condizioni sensibili quali la leucemia linfoblastica acuta. Per studiare l'efficienza e l'efficacia della soluzione proposta, sono state condotte ulteriori sperimentazioni confrontando il tool realizzato con altrimenti strumenti ben noti come {\em FusionCatcher}. Gli studenti hanno, infine, osservato che le tecniche di deep learning hanno effettivamente svolto un ruolo centrale nel migliorare i tool pre-esistenti, specialmente per le fasi di sequenziamento ed allineamento.
+
+I modelli, sviluppati in ottica open-source e disponbili pubblicamente su GitHub \cite{kubeless_gf}, sfruttano tecnologie ben note come Python, PyTorch, Numpy e Pandas, per le quali si rimanda alle rispettive documentazioni ufficiali; inoltre, gli studenti hanno adoperato ulteriori tecnologie ausiliarie, come i Fusim \cite{fusim} e GenomeTools \cite{gt}.
+
+La repository di GeneFusion ha la seguente forma:
+
+\begin{small}
+\begin{Verbatim}[commandchars=\\\{\}]
+    \textcolor{blue}{antoniogrv@linux} \textcolor{blue!50}{ ~/kubeless-gf $} ls
+    data         model             tokenizer             utils
+    dataset      README.md         \textcolor{purple!80}{train_fusion_classifier.py}
+    grid_search  requirements.txt  \textcolor{purple!80}{train_fusion_classifier.py}
+
+\end{Verbatim}
+\end{small}
+
+\subsection{Il modello Gene Classifier}
+
+TBA
+
+\subsection{Il modello Fusion Classifier}
+
+TBA
