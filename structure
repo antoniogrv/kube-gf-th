@@ -5,9 +5,10 @@ I. Introduzione
     I.I La Rivoluzione DevOps e le sue conseguenze
     I.II Paradigma MLOps e MLSecOps
 II. Problemi bioinformatici ad alta complessità
-    II.II I modelli GeneFusion
-        II.II.I Modello Gene Classifier
-        II.II.II Modello Fusion Classifier
+    II.I I modelli GeneFusion
+        II.I.I Modello Gene Classifier
+        II.I.II Modello Fusion Classifier
+    II.II Ristrutturazione dei modelli in microservizi
 III. Tecnologie per l'approccio distribuito ai problemi di Machine Learning
     III.I Architetture a microservizi e monolitiche
     III.II Containerizzazione e virtualizzazione
