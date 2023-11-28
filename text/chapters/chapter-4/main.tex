@@ -10,30 +10,23 @@
 % 
 % 
 % Free and Open-Source template for academic works
-% https://github.com/dpmj/alcazar
+% https://github.com/dpmj/alca
 
 
-% Start standard numbering and page style
 
 \clearpage
 \cleardoublepage
-\phantomsection
 
-\renewcommand\chaptername{Capitolo}
-\renewcommand{\figurename}{Figura}
+\chapter{Riprogettazione in microservizi dei modelli GeneFusion}
 
-\pagestyle{chapters}
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\section{Fasi di riprogettazione dei modelli GeneFusion in microservizi}
 
-\input{text/chapters/chapter-1/introduzione.tex}
+\section{Integrazione del runtime CUDA per l'integrazione della GPU}
 
-\input{text/chapters/chapter-2/bioinf.tex}
+\section{Compilazione dei manifesti della pipeline con Miniconda e Docker}
 
-\input{text/chapters/chapter-3/main.tex}
+\section{Caricamento delle immagini Docker su un registro on-prem}
 
-\input{text/chapters/chapter-4/main.tex}
+\section{Esecuzione della pipeline}
 
-\input{text/chapters/chapter-5/main.tex}
-
-\input{text/chapters/chapter-6/main.tex}
+\section{Benchmark delle prestazioni}

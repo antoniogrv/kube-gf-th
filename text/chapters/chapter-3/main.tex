@@ -10,30 +10,17 @@
 % 
 % 
 % Free and Open-Source template for academic works
-% https://github.com/dpmj/alcazar
+% https://github.com/dpmj/alca
 
 
-% Start standard numbering and page style
 
 \clearpage
 \cleardoublepage
-\phantomsection
 
-\renewcommand\chaptername{Capitolo}
-\renewcommand{\figurename}{Figura}
+\input{text/chapters/chapter-3/microservices.tex}
 
-\pagestyle{chapters}
-\pagenumbering{arabic}
-\setcounter{page}{1}
+\input{text/chapters/chapter-3/kubernetes.tex}
 
-\input{text/chapters/chapter-1/introduzione.tex}
+\input{text/chapters/chapter-3/kubeflow.tex}
 
-\input{text/chapters/chapter-2/bioinf.tex}
-
-\input{text/chapters/chapter-3/main.tex}
-
-\input{text/chapters/chapter-4/main.tex}
-
-\input{text/chapters/chapter-5/main.tex}
-
-\input{text/chapters/chapter-6/main.tex}
+\input{text/chapters/chapter-3/cloud.tex}
