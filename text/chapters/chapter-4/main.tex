@@ -182,15 +182,15 @@ Per effettivamente creare le risorse su cui si dovrà poggiare la pipeline, e ci
 \begin{Verbatim}[commandchars=\\\{\}]
 chmod +x kube-pipe/kind/boot-kind-gpu.sh
 ./kube-pipe/kind/boot-kind-gpu.sh
-kubectl cluster-info --context kind-kind
+\textcolor{purple}{kubectl} cluster-info --context kind-kind
 
-kubectl apply -k \\ 
+\textcolor{purple}{kubectl} apply -k \\ 
     "github.com/kubeflow/pipelines/manifests/kustomize/" . \\
     "cluster-scoped-resources?ref=2.0.2"
-kubectl wait \\
+\textcolor{purple}{kubectl} wait \\
     --for condition=established \\ 
     --timeout=60s crd/applications.app.k8s.io
-kubectl apply -k \\ 
+\textcolor{purple}{kubectl} apply -k \\ 
     "github.com/kubeflow/pipelines/manifests/kustomize/env/" . \\
     "platform-agnostic-emissary?ref=2.0.2"
 \end{Verbatim}
@@ -204,7 +204,7 @@ Sarà quindi possibile effettuare il port-forwarding della dashboard di Kubeflow
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-kubectl port-forward \\ 
+\textcolor{purple}{kubectl} port-forward \\ 
     -n kubeflow svc/ml-pipeline-ui \\ 
     8080:80
 \end{Verbatim}
@@ -243,7 +243,7 @@ A questo punto, eseguire il seguente comando, che previene una serie di problemi
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-docker exec -ti kind-control-plane ln -s \\
+\textcolor{blue}{docker} exec -ti kind-control-plane ln -s \\
     /sbin/ldconfig \\
     /sbin/ldconfig.real
 \end{Verbatim}
@@ -253,9 +253,9 @@ Infine, utilizzando il package manager \glsname{helm}, sarà finalmente possibil
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-helm repo add nvidia https://helm.ngc.nvidia.com/nvidia
-helm repo update
-helm install --wait --generate-name \\
+\textcolor{darkgreen}{helm} repo add nvidia https://helm.ngc.nvidia.com/nvidia
+\textcolor{darkgreen}{helm} repo update
+\textcolor{darkgreen}{helm} install --wait --generate-name \\
         -n gpu-operator --create-namespace \\
         nvidia/gpu-operator --set driver.enabled=false
 \end{Verbatim}
@@ -263,7 +263,7 @@ helm install --wait --generate-name \\
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=400px]{figures/ch4and5/gpu.png}
+    \includegraphics[width=300px]{figures/ch4and5/gpu.png}
     \caption[Risorse del GPU Operator di NVIDIA in esecuzione]{Risorse del GPU Operator di NVIDIA in esecuzione}
     \label{fig:cha6:gpu}
 \end{figure}
@@ -272,10 +272,10 @@ E' importante confermare che le etichette siano state correttamente applicate ai
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-kubectl logs \\
+\textcolor{purple}{kubectl} logs \\
     -f nvidia-device-plugin-daemonset-xxx \\
     -n gpu-operator
-kubectl describe node kind-control-plane
+\textcolor{purple}{kubectl} describe node kind-control-plane
 \end{Verbatim}
 \end{small}
 
@@ -283,24 +283,24 @@ kubectl describe node kind-control-plane
 
 Se la dashbooard Kubeflow è effettivamente in funzione, è possibile procedere adesso al caricamento delle immagini Docker dei microservizi all'interno del registro Docker on-prem dell'architettura (realizzato mediante i comandi soprastanti). Intuitivamente, questo viene fatto poiché la pipeline Kubeflow (che risiede in uno o più container Docker nella forma di pod Kubernetes) non ha contezza delle immagini Docker presenti sull'host.
 
-In ogni caso, eseguire i seguenti comandi costruirà le immagini Docker mediante la docker build API, per poi pubblicarle interamente (come TAR o blobfiles) sul registro Docker di Kubeflow, mediante la docker push API.
+In ogni caso, eseguire i seguenti comandi costruirà le immagini Docker mediante la {\small \verb|docker build|} API, per poi pubblicarle interamente (come TAR o blobfiles) sul registro Docker di Kubeflow, mediante la {\small \verb|docker push|} API.
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-docker build \\
+\textcolor{blue}{docker} build \\
     -t localhost:5001/step-dataset-generation-config:latest \\
     ./docker-steps/dataset && \\
-docker push \\
+\textcolor{blue}{docker} push \\
     localhost:5001/step-dataset-generation-config:latest
 \end{Verbatim}
 \end{small}
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-docker build \\
+\textcolor{blue}{docker} build \\
     -t localhost:5001/step-model-config:latest \\
     ./docker-steps/dataset && \\
-docker push \\
+\textcolor{blue}{docker} push \\
     localhost:5001/step-model-config:latest
 \end{Verbatim}
 \end{small}
@@ -380,10 +380,10 @@ L'utilizzo di Docker a questo punto è immediato. E' sufficiente costruire un'im
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
-docker build \\
+\textcolor{blue}{docker} build \\
     -t flow \\
     -f kube-pipe/flow.Dockerfile kube-pipe && \\
-docker run \\
+\textcolor{blue}{docker} run \\
     -v ./kube-pipe/relics:/relics flow \\
     compile_gene_classifier_pipeline.py
 \end{Verbatim}
@@ -482,7 +482,7 @@ L'avvio di una nuova esecuzione genererà nuovi pod (con una speciale configuraz
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=400px]{figures/ch4and5/pods.png}
+    \includegraphics[width=350px]{figures/ch4and5/pods.png}
     \caption[Pod generati per le nuove esecuzioni]{Pod generati per le nuove esecuzioni}
     \label{fig:cha6:kf-pods}
 \end{figure}
