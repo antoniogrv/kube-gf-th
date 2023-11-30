@@ -63,68 +63,48 @@ La modularità dei componenti personalizzati consente agli sviluppatori di conce
 Per fornire un esempio di sviluppo di un componente Kubeflow, esamineremo l'implementazione di un operatore personalizzato specifico per Kubeflow. Gli operatori personalizzati sono una parte essenziale di Kubeflow e semplificano la gestione di risorse specifiche all'interno di un cluster Kubernetes. Per questo esempio, supponiamo di voler creare un operatore personalizzato per gestire la registrazione e il monitoraggio degli esperimenti di machine learning su Kubeflow.
 
 \begin{code}
-\captionof{listing}{Fusion Classifier sub-pipeline}
+\captionof{listing}{Esempio di un semplice componente Kubeflow}
 \label{code:apx:a:python}
-\begin{minted}{python}
-from kubernetes import client, config
-from kubernetes.client.rest import ApiException
-
-class KubeflowExperimentOperator:
-    def __init__(self, experiment_name):
-        config.load_kube_config()
-        self.experiment_name = experiment_name
-        self.api_instance = client.CustomObjectsApi()
-
-    def create_experiment(self):
-        body = {
-            "apiVersion": "kubeflow.org/v1alpha3",
-            "kind": "Experiment",
-            "metadata": {"name": self.experiment_name},
-            "spec": {"objective": "MAXIMIZE", "algorithm": {"algorithmName": "random"}}
-        }
-
-        try:
-            api_response = self.api_instance.create_cluster_custom_object(
-                group="kubeflow.org",
-                version="v1alpha3",
-                plural="experiments",
-                body=body,
-            )
-            print("Experiment created. Status='%s'" % str(api_response.status))
-        except ApiException as e:
-            return e
-
-    def get_experiment_status(self):
-        try:
-            api_response = self.api_instance.get_cluster_custom_object_status(
-                group="kubeflow.org",
-                version="v1alpha3",
-                plural="experiments",
-                name=self.experiment_name,
-            )
-            return api_response["status"]
-        except ApiException as e:
-            return e
+\begin{minted}{yaml}
+name: Step di esempio
+description: Descrizione dello step di esempio
+    
+implementation:
+    container:
+    image: localhost:5001/hello-world:linux
 \end{minted}
 \end{code}
 
 \begin{code}
-\captionof{listing}{Utilizzo del componente Kubeflow}
+\captionof{listing}{Esempio di un componente Kubeflow con I/O-mapping}
 \label{code:apx:a:python}
-\begin{minted}{python}
-from kubeflow_experiment_operator import KubeflowExperimentOperator
-
-# Creazione di un'istanza dell'operatore per l'esperimento "my_experiment"
-operator = KubeflowExperimentOperator(experiment_name="my_experiment")
-
-# Creazione di un nuovo esperimento
-operator.create_experiment()
-
-# Ottenimento dello stato dell'esperimento
-experiment_status = operator.get_experiment_status()
-print(f"Status of experiment: {experiment_status}")
-
-
+\begin{minted}{yaml}
+name: Fusion Classifier Model Training
+description: Effettua l'addestramento del modello FC
+    
+inputs:
+- {name: train_csv_path, type: String, description: 'Training CSV path.'}
+- {name: val_csv_path, type: String, description: 'Validation CSV path.'}
+- {name: gc_model_path, type: String, description: 'Absolute path of the Gene Classifier H5 model.'}
+    
+outputs:
+- {name: model_path, type: String, description: 'H5 Model path.'}
+    
+implementation:
+    container:
+        image: localhost:5001/step-model-config:latest
+        command: [
+            python3.9,
+                'fc_handler.py',
+                -gc_model_path, 
+                {inputPath: gc_model_path},
+                -train_csv_path, 
+                {inputPath: train_csv_path},
+                -val_csv_path, 
+                {inputPath: val_csv_path},
+                -model_path, 
+                {outputPath: model_path}
+        ]
 \end{minted}
 \end{code}
 

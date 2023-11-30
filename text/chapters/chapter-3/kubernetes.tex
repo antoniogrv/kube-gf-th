@@ -20,6 +20,13 @@ Orchestrazione dei carichi di lavoro in ambito informatico si riferisce al proce
 
 \subsection{Kubernetes}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{figures/ch3/kubernetes-logo.png}
+    \caption[Il "timone", simbolo di Kubernetes]{Il "timone", simbolo di Kubernetes}
+    \label{fig:cha3:k8s2}
+\end{figure}
+
 L'analisi di Kubernetes richiede un approccio tecnico e preciso, considerando la complessità e l'ampiezza delle funzionalità che offre nell'orchestrazione e nella gestione dei container. Fondamentale è il contesto delle sue origini, risalenti al progetto Borg sviluppato in Google, il quale ha posto le basi per molte delle caratteristiche chiave di Kubernetes.
 
 Kubernetes si basa su un modello dichiarativo, in cui gli utenti specificano lo stato desiderato dell'applicazione e il sistema si occupa di portare lo stato effettivo al corrispondente. Questo modello, ispirato dalla filosofia di Borg \cite{verma2015large}, consente la gestione semplificata e la scalabilità orizzontale degli applicativi distribuiti. Le risorse fisiche sono astratte e trattate come un pool omogeneo, garantendo una distribuzione efficiente dei container su nodi fisici o virtuali \cite{burns2016borg}.
@@ -28,7 +35,7 @@ Un elemento cruciale in Kubernetes è il concetto di Pod, che rappresenta la pi�
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=300px]{figures/ch3/kube-pod.jpg}
+    \includegraphics[width=250px]{figures/ch3/kube-pod.jpg}
     \caption[Overview ad alto livello di un pod]{Overview ad alto livello di un pod}
     \label{fig:cha3:k8s2}
 \end{figure}
