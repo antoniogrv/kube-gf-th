@@ -167,6 +167,13 @@ E' possibile testare le immagini create con i comandi CLI {\small \verb|docker b
 
 Come accennato, il sistema prevede un'infrastruttura \glsname{kubernetes} su cui è possibile eseguire pipeline di \glsname{ml} e deep learning, realizzata tramite \glsname{kubeflow} e sviluppata localmente con \glsname{kind}.
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{figures/ch4and5/arch.png}
+    \caption[Anteprima dell'architettura realizzata]{Anteprima dell'architettura realizzata}
+    \label{fig:cha6:arch}
+\end{figure}
+
 Prima di iniziare, assicurasi di aver installato sul proprio computer le seguenti dipendenze:
 
 \begin{itemize}
@@ -211,7 +218,6 @@ Sarà quindi possibile effettuare il port-forwarding della dashboard di Kubeflow
 \end{small}
 
 A questo punto, se si avrà effettuato correttamente l'installazione, su {\small \verb|localhost:8000|} sarà possibile visionare la dashboard Kubeflow.
-
 
 \section{Integrazione del runtime CUDA per l'integrazione della GPU}
 
@@ -260,13 +266,6 @@ Infine, utilizzando il package manager \glsname{helm}, sarà finalmente possibil
         nvidia/gpu-operator --set driver.enabled=false
 \end{Verbatim}
 \end{small}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=300px]{figures/ch4and5/gpu.png}
-    \caption[Risorse del GPU Operator di NVIDIA in esecuzione]{Risorse del GPU Operator di NVIDIA in esecuzione}
-    \label{fig:cha6:gpu}
-\end{figure}
 
 E' importante confermare che le etichette siano state correttamente applicate ai nodi. Per farlo, è possibile eseguire i seguenti comandi:
 
@@ -370,7 +369,14 @@ implementation:
 \end{minted}
 \end{code}
 
-A partire da questi componenti Kubeflow, è adesso possibile compilare le due pipeline eseguendo rispettivamente {\small \verb|compile_gene_classifier_pipeline.py|} e {\small \verb|compile_fusion_classifier_pipeline.py|}. Il prodotto della compilazione è a sua volta un file YAML.
+A partire da questi componenti Kubeflow, è adesso possibile compilare le due pipeline eseguendo rispettivamente:
+
+\begin{itemize}
+    \item {\small \verb|compile_gene_classifier_pipeline.py|} 
+    \item {\small \verb|compile_fusion_classifier_pipeline.py|}
+\end{itemize}
+
+Il prodotto della compilazione è a sua volta un file YAML.
 
 Per eseguire i due script di compilazione, ci sono due possibilità: utilizzare \glsname{docker}, o utilizzare \glsname{miniconda}. 
 
@@ -479,13 +485,6 @@ Gli artefatti in output saranno salvati in una schermata indipendente, benché v
 \end{figure}
 
 L'avvio di una nuova esecuzione genererà nuovi pod (con una speciale configurazione chiamata Job) all'interno del cluster Kind. Questi nuovi pod sono analizzabili come qualsiasi altra risorsa Kubernetes. E' altresì banale osservare come ogni step della macchina a stati corrisponda, di per sé, ad un nuovo pod.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=350px]{figures/ch4and5/pods.png}
-    \caption[Pod generati per le nuove esecuzioni]{Pod generati per le nuove esecuzioni}
-    \label{fig:cha6:kf-pods}
-\end{figure}
 
 Se i componenti e la pipeline sono stati configurati correttamente, allora l'esecuzione procederà organicamente, rilasciando artefatti intermedi alla fine di ogni step, e mappando l'output e gli input degli step così come descritto nei manifesti YAML.
 
