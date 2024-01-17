@@ -26,9 +26,9 @@
 
 \chapter{Considerazioni di MLSecOps}
 
-Come accennato nei Capitoli 1 e 2, il paradigma MLSecOps è di ardua implementazione, specialmente se si interseca col complesso mondo delle architetture a microservizi. In genere, con "MLSecOps" intendiamo un insieme di tecniche e metodologie per applicare principi di sicurezza alle pipeline, alle infrastrutture e ai prodotti software relativi al machine learning.
+Come accennato nei Capitoli 1 e 2, il paradigma MLSecOps è di complessa implementazione, specialmente se si interseca col articolato mondo delle architetture a microservizi. In generale, con "MLSecOps" intendiamo un insieme di tecniche e metodologie per applicare principi di sicurezza alle pipeline, alle infrastrutture e ai prodotti software relativi al machine learning.
 
-Un contributo originale di questa tesi di laurea magistrale è rappresentato dalla creazione parallela di un'architettura (del tutto simile a quella descritta nel Capitolo 4) infetta e vulnerabile a specifici tipi di attacchi; e, in più generale, all'analisi compilativa di alternative meno dannose, come il load testing.
+Un contributo originale di questa tesi di laurea magistrale è rappresentato dalla creazione parallela di un'architettura (del tutto simile a quella descritta nel Capitolo 4) infetta e vulnerabile a specifici tipi di attacchi, oltre che all'analisi compilativa di pratiche relativamente meno dannose, come il load testing.
 
 \begin{figure}[H]
     \centering
@@ -71,7 +71,7 @@ In conclusione, Kali Linux, con la sua vasta gamma di strumenti dedicati alla si
 
 Orientativamente, operando su un cluster locale Kind abbiamo la necessità di simulare mediante Docker un avversario Kali Linux, containerizzando il sistema operativa assieme agli strumenti che vorremmo utilizzare, come Metasploit. La documentazione ufficiale di Kali Linux a tal riguardo invita a produrre una propria immagine Docker personalizzata per generare on-the-fly un container con gli strumenti richiesti, o in alternativa installarli ogni volta che si spegne e ricrea il container.
 
-E' stato quindi prodotto un Dockerfile per produrre un'immagine Docker consistente con tutti gli strumenti necessari per i nostri fini.
+E' stato quindi prodotto un Dockerfile per produrre un'immagine Docker comprensiva di tutti gli strumenti necessari per i nostri fini.
 
 \begin{code}
 \captionof{listing}{Kali Linux Dockerfile}
@@ -110,7 +110,7 @@ RUN wget https://github.com/cdk-team/CDK/releases/download/v1.5.2/cdk_linux_amd6
 \end{minted}
 \end{code}
 
-E' rapidamente osservabile come l'immagine Docker di Kali sia stata caricata anche dei binari di CDK. Per costruire l'immagine, è sufficiente eseguire il seguente comando:
+E' rapidamente osservabile come l'immagine Docker di Kali sia stata caricata anche con dei binari di CDK. Per costruire l'immagine, è sufficiente eseguire il seguente comando:
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -145,11 +145,11 @@ L'architettura modulare di Metasploit è un elemento chiave del suo successo. I 
 
 Metasploit, con la sua potente architettura modulare e la vasta comunità di utenti e sviluppatori, continua a essere uno degli strumenti più rilevanti per condurre test di penetrazione e valutare la sicurezza dei sistemi. La sua versatilità, facilità d'uso e capacità di automatizzazione lo rendono uno strumento cruciale per gli esperti di sicurezza impegnati nella protezione delle infrastrutture digitali da minacce sempre più sofisticate \cite{metasploit_future}.
 
-Il container Kali verrà utilizzato prevalentemente come di appoggio per il software Metasploit, tool di exploiting e penetration testing ben noto nel settore InfoSec. In particolare, verranno utilizzati i moduli "Kubernetes Penetration Testing" al fine di esporre le vulnerabilità del cluster Kind. Si tratta, in particolare, dei seguenti moduli: {\small \verb|kubernetes/enum|} e {\small \verb|kubernetes/exec|}.
+Il container Kali verrà utilizzato prevalentemente come base di appoggio per il software Metasploit. In particolare, verranno utilizzati i moduli del catalogo "Kubernetes Penetration Testing" al fine di esporre le vulnerabilità del cluster Kind. Si tratta, in particolare, dei seguenti moduli: {\small \verb|kubernetes/enum|} e {\small \verb|kubernetes/exec|}.
 
 Verrà mostrato un uso esemplificativo del primo modulo, poiché il secondo - venendo prevalentemente utilizzato in contesti di shell execution - non si presta al contesto di Kubeflow, in cui i pods sono Jobs one-shot che muoiono al termine dell'esecuzione.
 
-Per impiegare questi moduli, bisognerà prima di tutto generare un Service Account da affibbiare ad un ipotetico amministratore del cluster compromesso. Questa procedura è delinata nella sezione "Access Clusters Using the Kubernetes API" \cite{k8s-docs-access} della documentazione di Kubernetes. In particolare, è sufficiente eseguire i seguenti comandi:
+Per impiegare questi moduli, bisognerà prima di tutto generare un Service Account da affibbiare ad un ipotetico amministratore del cluster compromesso. Questa procedura è delineata nella sezione "Access Clusters Using the Kubernetes API" \cite{k8s-docs-access} della documentazione di Kubernetes. In particolare, è sufficiente eseguire i seguenti comandi:
 
 \begin{small}
 \begin{Verbatim}[commandchars=\\\{\}]
@@ -165,7 +165,7 @@ Per impiegare questi moduli, bisognerà prima di tutto generare un Service Accou
 \end{Verbatim}
 \end{small}
 
-Il processo genererà un JSON Web Token (JWT) di un cluster admin con accesso completo alle risorse del sistema. In particolare, lultimo comando dovrebbe restituire un (JWT) necessario per autenticarsi al cluster Kubernetes. Il JWT dovrebbe avere una forma di questo tipo:
+Il processo genererà un JSON Web Token (JWT) di un cluster admin con accesso completo alle risorse del sistema. In particolare, l'ultimo comando dovrebbe restituire un (JWT) necessario per autenticarsi al cluster Kubernetes. Il JWT dovrebbe avere una forma di questo tipo:
 
 \begin{code}
 \captionof{listing}{JSON Web Token esemplificativo}
@@ -300,7 +300,7 @@ RUN apk add --no-cache wget && \
 
 \subsection{Creare un nodo Kind contagiato da CDK}
 
-Durante l'installazione del sistema, è stato eseguito uno shell script {\small \verb|(boot-kind-gpu.sh)|} per generare il cluster Kubernetes con Kind. Tale script, per rappresentare i nodi del cluster, utilizza l'immagine Docker {\small \verb|kindest/node|}. E' invece possibile generare un cluster Kind corrotto, popolato da nodi infetti col toolkit CDK, sfruttando un'immagine Docker personalizzata chiamata {\small \verb|kind-cdk|} e realizzata contestualmente a questo lavoro di tesi. Costruendo il cluster in questo modo, è possibile indagare le difese del cluster Kubernetes, e in particolare del nodo {\small \verb|kind-control-plane|} infetto, eseguendo valutazioni di Information Gathering con CDK.
+Durante l'installazione del sistema descritta nei capitoli precedenti, è stato eseguito uno shell script {\small \verb|(boot-kind-gpu.sh)|} per generare il cluster Kubernetes con Kind. Tale script, per rappresentare i nodi del cluster, utilizza l'immagine Docker {\small \verb|kindest/node|}. E' invece possibile generare un cluster Kind corrotto, popolato da nodi infetti col toolkit CDK, sfruttando un'immagine Docker personalizzata chiamata {\small \verb|kind-cdk|} e realizzata contestualmente a questo lavoro di tesi. Costruendo il cluster in questo modo, è possibile indagare le difese del cluster Kubernetes, e in particolare del nodo {\small \verb|kind-control-plane|} infetto, eseguendo valutazioni di Information Gathering con CDK.
 
 Per costruire l'immagine Docker {\small \verb|kind-cdk|}, eseguire il seguente comando.
 
@@ -364,7 +364,7 @@ users:
 \end{minted}
 \end{code}
 
-Il file di log prodotto da cdk eva a partire da un nodo Kind vergine è disponibile nella directory {\small \verb|/container-sec/logs|} di questa repository.
+Il file di log prodotto da cdk eva a partire da un nodo Kind vergine è disponibile nella directory {\small \verb|/container-sec/logs|} della repository di tesi.
 
 \section{Artillery}
 
@@ -398,7 +398,7 @@ L'adozione di strumenti di Load Testing, come Artillery, riveste una rilevanza c
 
 \subsection{Kubernetes Control Plane Load Testing}
 
-Contestualmente a questo lavoro di tesi, un attacco di load testing con Artillery può essere condotto sul control plane di Kubernetes, elemento centrale nell'architettura del sistema. E' stato realizzato un manifesto YAML per effettuare un blitz ai danni del control plane, con lo scopo ultimo di analizzare i tempi di risposta e la sua inerente resilienza. 
+Contestualmente a questo lavoro di tesi, è stato indagato come un attacco di load testing con Artillery possa essere condotto control il Control Plane di Kubernetes, elemento centrale nell'architettura del sistema. E' stato realizzato un manifesto YAML per effettuare un blitz ai danni del Control plane, con lo scopo ultimo di analizzare i tempi di risposta e la sua inerente resilienza. 
 
 Per farlo, eseguire il seguente comando, che avvierà un container Docker e alla fine del testing restituirà le metriche di esecuzione in {\small \verb|/container-sec/logs|}.
 
@@ -452,7 +452,7 @@ scenarios:
 \end{minted}
 \end{code}
 
-Come è possibile notare, il "blitz" è composto da tre fasi di attacco, ognuna delle quali aumenta radicalmente il numero di utenti virtuali (i.e. fonti da cui partono le richieste HTTP) che operano contro il control plane. Ovviamente, in un contesto di prduzione il blitz indicato avrebbe una forma più organica, con valori meglio tarati in base all'infrastruttura utilizzata.
+Come è possibile notare, il "blitz" è composto da tre fasi di attacco, ognuna delle quali aumenta radicalmente il numero di utenti virtuali (i.e. fonti da cui partono le richieste HTTP) che operano contro il control plane. Ovviamente, in un contesto di produzione il blitz indicato avrebbe una forma più organica, con valori meglio tarati in base all'infrastruttura utilizzata (e.g. un cloud provider o altre soluzioni).
 
 Poiché, nel caso di questa tesi, si sta adoperando Kind per sviluppare in locale, è bene ricordare che il load testing avviene {\em contro sé stessi}.
 

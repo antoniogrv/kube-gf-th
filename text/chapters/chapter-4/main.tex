@@ -221,7 +221,7 @@ A questo punto, se si avrà effettuato correttamente l'installazione, su {\small
 
 \section{Integrazione del runtime CUDA per l'integrazione della GPU}
 
-Il sistema, così come installato, non permetterà l'utilizzo della GPU durante le esecuzioni della pipeline, nonostante le imamgini Docker realizzate già integrino coerentemente i runtime CUDA per l'utilizzo delle schede video NVIDIA.
+Il sistema, così come installato, non permetterà l'utilizzo della GPU durante le esecuzioni della pipeline, nonostante le immagini Docker realizzate già integrino coerentemente i runtime CUDA per l'utilizzo delle schede video NVIDIA.
 
 Per integrare il runtime CUDA su Kubeflow, è necessario abilitare un operatore Kubernetes chiamato {\small \verb|gpu-operator|} che, operando tramite DeamonSets e Pods, verificherà l'effettiva presenza delle risorse hardware GPU a disponibilità dei nodi Kind.
 
@@ -280,7 +280,7 @@ E' importante confermare che le etichette siano state correttamente applicate ai
 
 \section{Caricamento delle immagini Docker su un registro on-prem}
 
-Se la dashbooard Kubeflow è effettivamente in funzione, è possibile procedere adesso al caricamento delle immagini Docker dei microservizi all'interno del registro Docker on-prem dell'architettura (realizzato mediante i comandi soprastanti). Intuitivamente, questo viene fatto poiché la pipeline Kubeflow (che risiede in uno o più container Docker nella forma di pod Kubernetes) non ha contezza delle immagini Docker presenti sull'host.
+Se la dashboard Kubeflow è effettivamente in funzione, è possibile procedere adesso al caricamento delle immagini Docker dei microservizi all'interno del registro Docker on-prem dell'architettura (realizzato mediante i comandi soprastanti). Intuitivamente, questo viene fatto poiché la pipeline Kubeflow (che risiede in uno o più container Docker nella forma di pod Kubernetes) non ha contezza delle immagini Docker presenti sull'host.
 
 In ogni caso, eseguire i seguenti comandi costruirà le immagini Docker mediante la {\small \verb|docker build|} API, per poi pubblicarle interamente (come TAR o blobfiles) sul registro Docker di Kubeflow, mediante la {\small \verb|docker push|} API.
 
