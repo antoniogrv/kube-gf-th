@@ -17,7 +17,7 @@
 \clearpage
 \cleardoublepage
 
-\chapter{Problemi bioinformatici ad alta complessità}
+\section{Problemi bioinformatici ad alta complessità}
 
 La \glsname{bioinf}, disciplina interdisciplinare congiungente biologia e informatica, ha conosciuto un rapido sviluppo negli ultimi decenni grazie alla crescente disponibilità di dati biologici ad alta dimensionalità. La disciplina si propone di analizzare, interpretare e gestire le informazioni biologiche mediante l'impiego di strumenti computazionali avanzati. Tale ambito ha preso piede in virtù della sua capacità di contribuire significativamente alla comprensione dei fenomeni biologici complessi. La bioinformatica abbraccia molteplici sfaccettature, tra cui l'analisi del genoma, la proteomica, la trascrittomica e la metabolomica, fornendo un quadro completo delle informazioni biologiche che costituiscono il fondamento della vita.
 
@@ -27,7 +27,7 @@ Tuttavia, l'applicazione di modelli di machine learning alla bioinformatica non 
 
 Un ulteriore esempio notevole dell'applicazione del machine learning in bioinformatica è l'uso di \glsname{nn} per predire la struttura tridimensionale delle proteine. La ricerca di Senior et al. (2020) ha dimostrato progressi significativi in questo ambito \cite{senior2020improved}.
 
-\section{I modelli GeneFusion}
+\subsection{I modelli GeneFusion}
 
 Questa tesi itera su un lavoro accademico precedentemente realizzato dagli studenti Antonio Cirillo ed Eugenio De Simone dell'Università degli Studi di Salerno \cite{cirillo} \cite{desimone}, supervisionati dal relatore Rocco Zaccagnino.
 
@@ -139,7 +139,7 @@ Successivamente, {\small \verb|model_config|} verrà adoperato in circa ogni seg
 
 In ogni caso, ambo i modelli possono essere rappresentati da una macchina a stati che, sequenzialmente, produce i dati richiesti dalle fasi di training e testing, allena e realizza il modello e lo sottopone ad un test di forecasting. Nella fattispecie, vengono realizzati dataset di {\em training}, {\em validation} e {\em testing}. I primi due dataset sono coinvolti nella fase di training, mentre esclusivamente l'ultimo viene coinvolto nella fase di testing. La fase di testing sussegue la fase di training.
 
-\subsection{Il modello Gene Classifier}
+\subsubsection{Il modello Gene Classifier}
 
 \begin{figure}[h]
     \centering
@@ -162,7 +162,7 @@ In particolare, la banca dati a cui ci si riferisce è esposta da un'API di Enem
 
 Descrizioni più dettagliate delle fasi soprastanti sono disponibili nei lavori originali citati in precedenza.
 
-\subsection{Il modello Fusion Classifier}
+\subsubsection{Il modello Fusion Classifier}
 \begin{figure}[h]
     \centering
     \includegraphics[width=150px]{figures/ch2/fusion_stati.png}
@@ -178,7 +178,7 @@ Viene impiegata una rete neurale {\em fully-connected} in cui il primo layer è 
 
 Anche in questo caso, descrizioni più minuziose del funzionamento del modello sono disponibili nei lavori originali citati in precedenza.
 
-\section{Ristrutturazione delle macchine a stati dei modelli}
+\subsection{Ristrutturazione delle macchine a stati dei modelli}
 
 Com'è possibile osservare dalle Figura 2.2 e 2.3, la natura sequenziale delle operazioni è una evidente limitazione che potrebbero fungere da collo di bottiglia per le performance dei modelli. E' inoltre chiaro come sia specialmente il modello Fusion Classifier a risentire negativamente della natura fortemente sequenziale della pipeline, nonché alla sua inerente struttura monolitica espressa dal singolo script Python che ne governa il funzionamento.
 
@@ -205,7 +205,7 @@ Nella ristrutturazione del modello Fusion Classifier, vengono parallelizzate le 
 \begin{figure}[h]
     \centering
     \includegraphics[width=300px]{figures/ch2/dependencies.png}
-    \caption[Legenda dei microservizi]{Legenda dei microservizi}
+    \caption[Legenda dei microservizi che compongono la ristrutturazione proposta]{Legenda dei microservizi che compongono la ristrutturazione proposta}
     \label{fig:cha2:deps}
 \end{figure}
 
